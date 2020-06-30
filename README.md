@@ -1,6 +1,8 @@
 # NNS_Cpp_SingleThread
 Nearest Neighbor Search
 
+Author: Greg Gutmann
+
 Designed as an introduction to one implementation of a nearest neighbor search. Coded in a C/C++ style.
 It was created as a teaching tool for my work at Tokyo Institute of Technology. 
 
@@ -18,5 +20,32 @@ Simplicity was preferred over performance in this code.
 
 5. countNeighbors    // Function that uses the results of the NNS to do the users work
 
+# Building
 
-Author: Greg Gutmann
+## Linux 
+
+cd NNS_Demo_Gutrmann
+
+mkdir build
+
+cd build
+
+cmake ..
+
+make
+
+## Windows 
+
+Download CMake GUI
+
+Source directory is NNS_Demo_Gutrmann
+
+Build direcotory is NNS_Demo_Gutrmann/build
+
+<it will ask you if it should make the build folder if it doesn't exist>
+
+Click Configure
+
+Click Generate
+
+Go into build folder and click Visual Studio project file
