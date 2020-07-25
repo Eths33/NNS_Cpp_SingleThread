@@ -39,7 +39,7 @@ int main() {
 	sortObject.reorder(partObject.locations, partObject.sortedLoc);
 
 
-	sortObject.countNeighbors(partObject.sortedLoc, partObject.neighborCount, partObject.neighborList);
+	partObject.countNeighbors(sortObject);
 	partObject.printNeighborCount(); printf("\n\n");
 	//Simulation loop ends here
 
@@ -66,7 +66,7 @@ int main() {
 			sortObject.kvSort();
 			sortObject.findCellStartEnd();
 			sortObject.reorder(partObject.locations, partObject.sortedLoc);
-			sortObject.countNeighbors(partObject.sortedLoc, partObject.neighborCount, partObject.neighborList);
+			partObject.countNeighbors(sortObject);
 		}
 		t = clock() - t;
 		nnsTime = ((float)t) / CLOCKS_PER_SEC;

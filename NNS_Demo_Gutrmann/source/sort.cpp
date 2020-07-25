@@ -120,58 +120,6 @@ void NNS::reorder(std::vector<float>& locations, std::vector<float>& sortedLoc) 
     }
 }
 
-// Using the NNS to run "short" range algorithm
-void NNS::countNeighbors(std::vector<float>& sortedLoc, std::vector<int> & neighborCount, std::vector<std::vector<int>> &neighborList) {
-
-    for (int currIdx = 0; currIdx < particleCount; currIdx++) {
-        float2 thisLoc = make_float2(sortedLoc[currIdx * 2 + 0], sortedLoc[currIdx * 2 + 1]);
-        int thisCell = cellIndexPair[currIdx].cellID;
-        int originalIndex = cellIndexPair[currIdx].index;
-
-        int localCount = 0;
-
-        // Check the cells around the particle 
-        for (int t = 0; t < 9; t++) {
-            
-            // Iterate through the nine neighbor cells
-            int targetCell = (thisCell - cellDimx + (((t) / 3) * cellDimx)) - 1 + ((t) % 3);
-            
-            if (targetCell < cellCount - 1) // Excludes the one out-of-bounds cell
-            {
-                int startIndex = cellStart[targetCell];
-                int endIndex = cellEnd[targetCell];
-                
-                if (startIndex != 0xffffffff)          // cell is not empty
-                {
-                    for (int checkIdx = startIndex; checkIdx < endIndex; checkIdx++) { // This iterator is going through indexes of the sorted data
-                        // If data is not sorted will need to use the result of the keyValue sort to get the unsorted (original) index
-
-                        if (checkIdx != currIdx) // Dont compute with its self
-                        {
-                            float2 checkIdxLoc = make_float2(sortedLoc[checkIdx * 2 + 0], sortedLoc[checkIdx * 2 + 1]);
-                            float2 p2pVec = make_float2(checkIdxLoc.x - thisLoc.x, checkIdxLoc.y - thisLoc.y);
-                            float dist = sqrtf((p2pVec.x * p2pVec.x) + (p2pVec.y * p2pVec.y));
-                            
-                            if (dist < (float)cellLength)
-                            {
-                                ++localCount;
-#if !PERFORMANCE_TEST
-                                // Get checkIdx's unsorted index to access unsorted data
-                                int checkOrig = cellIndexPair[checkIdx].index;
-                                neighborList[originalIndex].push_back(checkOrig);
-#endif
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        neighborCount[originalIndex] = localCount;
-
-    }
-}
-
 // Helper
 int minimizePrint(int loop) {
     if (loop > 100) {
