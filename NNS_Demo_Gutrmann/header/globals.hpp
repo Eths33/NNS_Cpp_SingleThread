@@ -6,7 +6,7 @@
 #ifndef HELPER_H
 #define HELPER_H
 
-#define PERFORMANCE_TEST 1
+#define PERFORMANCE_TEST 0
 
 #if !PERFORMANCE_TEST
     #define X_DIM 15

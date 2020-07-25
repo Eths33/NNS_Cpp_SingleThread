@@ -15,7 +15,10 @@ struct KeyValuePair {
 };
 
 class NNS {
-    
+private:
+    // Depending on use case make more things private and use getters and setters
+
+public:    
     int cellLength;
     int bufferSize; // as a buffer and to handle truncation from dividing by cell size problem
 
@@ -33,11 +36,9 @@ class NNS {
 
     int particleCount;
 
-    std::vector<KeyValuePair> cellIndexPair;
-
     KeyValuePair makeKeyValue(int cell, int idx);
 
-public:
+    std::vector<KeyValuePair> cellIndexPair;
 
     void init(int count, int dimx, int dimy, int cell, int buffer);
 
@@ -46,7 +47,6 @@ public:
     void kvSort();
     void findCellStartEnd();
     void reorder(std::vector<float>& locations, std::vector<float>& sortedLoc);
-    void countNeighbors(std::vector<float>& sortedLoc, std::vector<int>& neighborCount, std::vector<std::vector<int>>& neighborList);
 
     // Printing main data strutures used in the NNS
     void printCellIndexPair(int printCount = 0);

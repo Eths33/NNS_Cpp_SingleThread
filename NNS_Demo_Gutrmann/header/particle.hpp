@@ -8,6 +8,8 @@
 
 #include <vector>
 
+class NNS;
+
 class Particle {
     int count;
 
@@ -28,6 +30,7 @@ public:
     void init(int particleCount, int dimx, int dimy);
     
     void countNeighborsN2(int cellLength);
+    void countNeighbors(NNS sort);
 
     void printLoc(int printCount = 0);
 
