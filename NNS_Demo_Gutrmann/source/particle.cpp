@@ -78,12 +78,12 @@ void Particle::countNeighbors(NNS sort) {
 
 			if (targetCell < sort.cellCount - 1) // Excludes the one out-of-bounds cell
 			{
-				int startIndex = sort.cellStart[targetCell];
-				int endIndex = sort.cellEnd[targetCell];
+				uint32_t startIndex = sort.cellStart[targetCell];
+				uint32_t endIndex = sort.cellEnd[targetCell];
 
 				if (startIndex != 0xffffffff)          // cell is not empty
 				{
-					for (int checkIdx = startIndex; checkIdx < endIndex; checkIdx++) { // This iterator is going through indexes of the sorted data
+					for (uint32_t checkIdx = startIndex; checkIdx < endIndex; checkIdx++) { // This iterator is going through indexes of the sorted data
 						// If data is not sorted will need to use the result of the keyValue sort to get the unsorted (original) index
 
 						if (checkIdx != currIdx) // Dont compute with its self
